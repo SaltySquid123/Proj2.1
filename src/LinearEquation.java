@@ -11,7 +11,8 @@ public class LinearEquation {
     }
 
     public String equation() {
-        double m = ((double) y2 - y1) / ((double) x2 - x1);
+        String m = ( y2 - y1) + "/" + (x2 - x1);
+
         double b = y1 - (x1 * m);
         return "y = " + m + "x" + " + " + b;
     }
