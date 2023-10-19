@@ -9,8 +9,11 @@ public class LinearEquation {
         this.x2 = x2;
         this.y2 = y2;
     }
+    public double roundToHundredth(double toRound){
+        return Math.round(toRound * 100.0) / 100.0;
+    }
     public double intercept() {
-        double m = ((double) y2 - y1) / ((double) x2 - x1);
+        double m = roundToHundredth((((double) y2 - y1) / ((double) x2 - x1)));
         return y1 - (x1 * m);
     }
     public String equation() {
@@ -24,10 +27,16 @@ public class LinearEquation {
     }
     public double distance() {
         double dis = Math.sqrt(Math.pow((double) x2 - x1, 2) + Math.pow((double) y2 - y1, 2));
-        return ((double) Math.round(dis * 100) / 100);
+        return roundToHundredth(dis);
     }
     public double slope(){
-        return ((double) y2 - y1) / ((double) x2 - x1);
+        return roundToHundredth((((double) y2 - y1) / ((double) x2 - x1)));
+    }
+    public String newX(double newX) {
+        double z = (newX * slope());
+        z += intercept();
+        double k = roundToHundredth(z);
+        return "(" + newX + ", " + k + ")";
     }
 
 }
