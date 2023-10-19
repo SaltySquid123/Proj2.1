@@ -9,12 +9,18 @@ public class LinearEquation {
         this.x2 = x2;
         this.y2 = y2;
     }
-
+    public double intercept() {
+        double m = ((double) y2 - y1) / ((double) x2 - x1);
+        return y1 - (x1 * m);
+    }
     public String equation() {
-        String m = ( y2 - y1) + "/" + (x2 - x1);
-
-        double b = y1 - (x1 * m);
-        return "y = " + m + "x" + " + " + b;
+        if (y1 != y2 ) {
+            String m = (y2 - y1) + "/" + (x2 - x1);
+            return "y = " + m + "x" + " + " + intercept();
+        }
+        else {
+            return "y = "  + intercept();
+        }
     }
     public double distance() {
         double dis = Math.sqrt(Math.pow((double) x2 - x1, 2) + Math.pow((double) y2 - y1, 2));
@@ -22,10 +28,6 @@ public class LinearEquation {
     }
     public double slope(){
         return ((double) y2 - y1) / ((double) x2 - x1);
-    }
-    public double intercept() {
-        double m = ((double) y2 - y1) / ((double) x2 - x1);
-        return y1 - (x1 * m);
     }
 
 }
