@@ -21,21 +21,38 @@ public class LinearEquation {
     public String equation() {
         String eq = "";
         if (y1 != y2) {
-            int intM = (y2 - y1) / (x2 - x1);
             String strM = (y2 - y1) + "/" + (x2 - x1);
             String absStrM = Math.abs(y2 - y1) + "/" + Math.abs(x2 - x1);
 
             if ((y2 - y1) % (x2 - x1) == 0){
                 strM = "" +  (y2 - y1) / (x2 - x1);
+                absStrM = "" + Math.abs((y2 - y1) / (x2 - x1));
+                if (x2 - x1 < 0 && y2 - y1 < 0) {
+                    eq = "y = " + absStrM + "x";
+                }
+                else if (x2 - x1 < 0 || y2 - y1 < 0) {
+                    eq = "y = -" + absStrM + "x";
+                }
+                else {
+                    eq = "y = " + strM + "x";
+                }
+            }
+            else {
+
+                if (x2 - x1 < 0 && y2 - y1 < 0) {
+                    eq = "y = " + absStrM + "x";
+                } else if (x2 - x1 < 0 || y2 - y1 < 0) {
+                    eq = "y = -" + absStrM + "x";
+                } else {
+                    eq = "y = " + strM + "x";
+                }
             }
 
-            eq = "y = " + strM + "x";
-
-            if (x2 - x1 < 0 && y2 - y1 < 0) {
-                eq = "y = " + absStrM + "x";
+            if (absStrM.equals("-1") || strM.equals("-1")) {
+                eq = "y = -x";
             }
-            else if (x2 - x1 < 0 || y2 - y1 < 0) {
-                eq = "y = -" + absStrM + "x";
+            else if (absStrM.equals("1") || strM.equals("1")) {
+                eq = "y = x";
             }
 
             if  (intercept() > 0) {
