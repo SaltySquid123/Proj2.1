@@ -17,13 +17,21 @@ public class LinearEquation {
         return y1 - (x1 * m);
     }
     public String equation() {
-        if (y1 != y2 ) {
-            String m = (y2 - y1) + "/" + (x2 - x1);
-            return "y = " + m + "x" + " + " + intercept();
+        String eq = "";
+        if (y1 != y2) {
+            if ((y2 - y1) % (x2 - x1) == 0) {
+                int m = (y2 - y1) / (x2 - x1);
+                eq = "y = " + m + "x" + " + " + intercept();
+            }
+            else {
+                String m = (y2 - y1) + "/" + (x2 - x1);
+                eq = "y = " + m + "x" + " + " + intercept();
+            }
         }
         else {
-            return "y = "  + intercept();
+            eq = "y = "  + intercept();
         }
+        return eq;
     }
     public double distance() {
         double dis = Math.sqrt(Math.pow((double) x2 - x1, 2) + Math.pow((double) y2 - y1, 2));
