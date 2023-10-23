@@ -13,20 +13,38 @@ public class LinearEquation {
         return Math.round(toRound * 100.0) / 100.0;
     }
     public double intercept() {
-        double m = roundToHundredth((((double) y2 - y1) / ((double) x2 - x1)));
+        double m = ((double) (y2 - y1)) / (x2 - x1);
+        m = roundToHundredth(m);
         return y1 - (x1 * m);
     }
+
     public String equation() {
         String eq = "";
         if (y1 != y2) {
-            if ((y2 - y1) % (x2 - x1) == 0) {
-                int m = (y2 - y1) / (x2 - x1);
-                eq = "y = " + m + "x" + " + " + intercept();
+            int intM = (y2 - y1) / (x2 - x1);
+            String strM = (y2 - y1) + "/" + (x2 - x1);
+            String absStrM = Math.abs(y2 - y1) + "/" + Math.abs(x2 - x1);
+
+            if ((y2 - y1) % (x2 - x1) == 0){
+                strM = "" +  (y2 - y1) / (x2 - x1);
             }
-            else {
-                String m = (y2 - y1) + "/" + (x2 - x1);
-                eq = "y = " + m + "x" + " + " + intercept();
+
+            eq = "y = " + strM + "x";
+
+            if (x2 - x1 < 0 && y2 - y1 < 0) {
+                eq = "y = " + absStrM + "x";
             }
+            else if (x2 - x1 < 0 || y2 - y1 < 0) {
+                eq = "y = -" + absStrM + "x";
+            }
+
+            if  (intercept() > 0) {
+                eq += " + " + intercept();
+            }
+            else if (intercept() < 0){
+                eq = eq + " - " + Math.abs(intercept());
+            }
+
         }
         else {
             eq = "y = "  + intercept();
