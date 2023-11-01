@@ -12,10 +12,10 @@ public class LinearEquation {
     public double roundToHundredth(double toRound){
         return Math.round(toRound * 100.0) / 100.0;
     }
-    public double intercept() {
+    public double yIntercept() {
         double m = ((double) (y2 - y1)) / (x2 - x1);
         m = roundToHundredth(m);
-        return y1 - (x1 * m);
+        return y1 - x1 * m;
     }
 
     public String equation() {
@@ -55,16 +55,16 @@ public class LinearEquation {
                 eq = "y = x";
             }
 
-            if  (intercept() > 0) {
-                eq += " + " + intercept();
+            if  (yIntercept() > 0) {
+                eq += " + " + yIntercept();
             }
-            else if (intercept() < 0){
-                eq = eq + " - " + Math.abs(intercept());
+            else if (yIntercept() < 0){
+                eq = eq + " - " + Math.abs(yIntercept());
             }
 
         }
         else {
-            eq = "y = "  + intercept();
+            eq = "y = "  + yIntercept();
         }
         return eq;
     }
@@ -75,11 +75,28 @@ public class LinearEquation {
     public double slope(){
         return roundToHundredth((((double) y2 - y1) / ((double) x2 - x1)));
     }
-    public String newX(double newX) {
+    public String coordinateForX(double newX) {
         double z = (newX * slope());
-        z += intercept();
+        z += yIntercept();
         double k = roundToHundredth(z);
         return "(" + newX + ", " + k + ")";
     }
-
+    public String lineInfo() {
+        String str = "__________________________________________\n";
+        if (x1 != x2) {
+            str += "The two points are: " + "(" + x1 + ", " + y1 + ")" + " and " + "(" + x2 + ", " + y2 + ")" + "\n";
+            str += "The linear equation between these 2 points is: " + equation() +"\n";
+            str += "The slope of this line is: " + slope() + "\n";
+            str += "The y intercept of the line is " + yIntercept() + "\n";
+            str += "The distance between these 2 points is " + distance() + "\n";
+            return str;
+        }
+        else if (x1 == x2) {
+            str += "The points are on a vertical line: x = " + x1;
+            return str;
+        }
+        else {
+            return "";
+        }
+    }
 }

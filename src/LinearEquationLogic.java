@@ -54,7 +54,7 @@ public class LinearEquationLogic {
             str += "The two points are: " + coord1 + " and " + coord2 + "\n";
             str += "The linear equation between these 2 points is: " + lin.equation() +"\n";
             str += "The slope of this line is: " + lin.slope() + "\n";
-            str += "The y intercept of the line is " + lin.intercept() + "\n";
+            str += "The y intercept of the line is " + lin.yIntercept() + "\n";
             str += "The distance between these 2 points is " + lin.distance() + "\n";
             return str;
         }
@@ -69,7 +69,7 @@ public class LinearEquationLogic {
     public String xEquals(double newX){
         scan.nextLine();
         System.out.println();
-        return "The point on the line is: " + lin.newX(newX);
+        return "The point on the line is: " + lin.coordinateForX(newX);
     }
     public void checkKeep(){
         System.out.println();
