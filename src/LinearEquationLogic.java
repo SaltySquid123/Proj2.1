@@ -23,7 +23,7 @@ public class LinearEquationLogic {
         System.out.println("Welcome to the linear equation calculator!");
         while (!keep.equals("n")) {
             getLinearInfo();
-            System.out.println(info());
+            System.out.println(lin.lineInfo());
             if (x1 != x2) {
                 System.out.print("Input value for x: ");
                 double x3 = scan.nextDouble();
@@ -47,24 +47,6 @@ public class LinearEquationLogic {
         x2 = Integer.parseInt(coord2.substring(1, idx2Comma));
         y2 = Integer.parseInt(coord2.substring(idx2Comma + 2, coord2.length() - 1));
         lin = new LinearEquation(x1, y1, x2, y2);
-    }
-    public String info() {
-        String str = "__________________________________________\n";
-        if (x1 != x2) {
-            str += "The two points are: " + coord1 + " and " + coord2 + "\n";
-            str += "The linear equation between these 2 points is: " + lin.equation() +"\n";
-            str += "The slope of this line is: " + lin.slope() + "\n";
-            str += "The y intercept of the line is " + lin.yIntercept() + "\n";
-            str += "The distance between these 2 points is " + lin.distance() + "\n";
-            return str;
-        }
-        else if (x1 == x2) {
-            str += "The points are on a vertical line: x = " + x1;
-            return str;
-        }
-        else {
-            return "";
-        }
     }
     public String xEquals(double newX){
         scan.nextLine();
